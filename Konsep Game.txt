@@ -1,0 +1,39 @@
+Concept
+
+Digitalize -> Table-top Card Game
+
+Title : (SPASSO The Game?)
+Objective : Point Collecting
+Player : 2 - 4 -> Sekedar untuk demo, pemain dibuat fix 2/3/4
+Tema : (Food and Beverages?)
+
+Keyword: Simple, Eazy to Play, Short time play
+-Ada 'deck' tempat tumpukan kartu. Main deck & Set Deck
+-Tidak ada kartu dipegang ditangan
+-Pemain diminta untuk mengumpulkan poin dari kartu2 yang tersedia
+-Tiap giliran beberapa (5) kartu dari tumpukan disajikan (pada counter), pemain bergiliran mengambil.
+-Pemain pertama yang mengambil kartu diputar setiap giliran
+
+Tiap giliran pemain diberikan pilihan:
+-Mengambil kartu dari counter
+-Menukar dengan kartu set
+-?
+
+Interaksi antar pemain???
+-Kartu khusus dengan bonus jika kondisi terpenuhi
+	-Poin bonus
+		-Kartu dalam set dianggap sebagai satu kartu dengan poin tertentu (ditukar dengan kartu set)
+		-?
+	-Efek Bonus
+		-Kartu tidak bisa ditukar, diambil, ataupun dibuang jika kondisi terpenuhi
+		-?
+-Kartu aksi (tidak memberi poin dan dikumpulkan oleh pemain)
+	-Tiap pemain memberikan satu kartu dengan poin terendah kepada pemain disebelah kirinya. Dimulai dari pemain pertama pada giliran ini
+	-Tiap pemain menukar/membuang satu kartu ke tumpukan kartu sisa
+	-Pemain dengan poin tertinggi saat ini membuang satu kartu ke tumpukan kartu sisa dan pemain dengan poin terendah mengambl satu kartu dari tumpukan kartu sisa
+	-Pemain dengan kondisi tertentu* mendapat bonus tertentu*
+	-?
+	
+
+Referensi:
+https://www.disastles.com/ (game setup)
