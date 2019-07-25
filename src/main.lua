@@ -106,6 +106,7 @@ end
 function love.draw()
   love.graphics.draw(background, 0, 0, 0, 1, 1)
   
+  --Draw Counter
   if Pick ~= nill then
     for i=1, 5 do
       picked = love.graphics.newImage(Card[Pick[i]]["Front"])
@@ -113,8 +114,8 @@ function love.draw()
     end
   end
   
+  --Draw Player
   for i=1, 4 do
-    love.graphics.print('score: ' .. Player[i]["Score"], 100, 100)
     if Player[i] ~= nill then
       for j=1, table.getn(Player[i]["Card"])do
         hand = love.graphics.newImage(Card[Player[i]["Card"][j]]["Front"])
@@ -122,6 +123,14 @@ function love.draw()
       end
     end
   end
+  
+  --Score Player
+  love.graphics.setColor(0,0,0)
+  love.graphics.print('score: ' .. Player[1]["Score"], 500, 575)
+  love.graphics.print('score: ' .. Player[2]["Score"], 100, 525)
+  love.graphics.print('score: ' .. Player[3]["Score"], 770, 140)
+  love.graphics.print('score: ' .. Player[4]["Score"], 1195, 165)
+  love.graphics.setColor(255,255,255)
   
 end
 
