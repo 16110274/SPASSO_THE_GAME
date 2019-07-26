@@ -5,12 +5,14 @@
 -- main.lua
 -- Main entry point
 ---------------------------------------------------------------------------
---io.stdout:setvbuf("no") --Debug Output
+
+math.randomseed(os.time()) -- so that the results are always different
 
 --import
 require 'fyshuffle'
 
 local background
+local player_turn = 1
 
 --Card list
 Card = {}
@@ -124,7 +126,19 @@ function love.draw()
     then
       for j=1, table.getn(Player[i]["Card"])do
         hand = love.graphics.newImage(Card[Player[i]["Card"][j]]["Front"])
-        love.graphics.draw(hand, 470+80*j, 585, 0, 0.15, 0.15)
+        if i == 1
+        then
+          love.graphics.draw(hand, 535+15*j, 585, 0, 0.15, 0.15)
+        elseif i == 2
+        then
+          love.graphics.draw(hand, 175, 415-15*j, math.pi/2, 0.15, 0.15)
+        elseif i == 3
+        then
+          love.graphics.draw(hand, 775-15*j, 145, math.pi, 0.15, 0.15)
+        elseif i == 4
+        then
+          love.graphics.draw(hand, 1160, 295+15*j, -math.pi/2, 0.15, 0.15)
+        end
       end
     end
   end
@@ -135,6 +149,7 @@ function love.draw()
   love.graphics.print('score: ' .. Player[2]["Score"], 100, 525)
   love.graphics.print('score: ' .. Player[3]["Score"], 770, 140)
   love.graphics.print('score: ' .. Player[4]["Score"], 1195, 165)
+  love.graphics.print('card left: ' .. table.getn(Deck), 380, 445)
   love.graphics.setColor(255,255,255)
 end
 
@@ -157,7 +172,7 @@ function love.mousepressed(x, y, button)
   if button == 1 
     and x > 370 and x < 470
     and y > 285 and y < 435
-    and Pick == nill
+    and Pick == nill or table.getn(Pick) < 1
   then
     deal_deck()
   end
@@ -172,6 +187,16 @@ function love.mousepressed(x, y, button)
       then
         playerGetCard(Pick,i,1)
         table.remove(Pick, i)
+        
+        --enemy move
+        for j = 2,4 do
+          if table.getn(Pick) < 1
+          then
+            deal_deck()
+          end
+          playerGetCard(Pick,math.random(table.getn(Pick)),j)
+          table.remove(Pick, table.getn(Pick))
+        end
       end
     end
   end

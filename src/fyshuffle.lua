@@ -1,4 +1,3 @@
-math.randomseed(os.time()) -- so that the results are always different
 function FYShuffle( tInput )
     local tReturn = {}
     for i = #tInput, 1, -1 do
