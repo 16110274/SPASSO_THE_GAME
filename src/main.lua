@@ -98,17 +98,21 @@ for i=1, 4 do
 end
 
 --Player take card
-function playerGetCard(GetCard,Playerid) --GETCARD object?
-  Player[Playerid]["Card"] = GetCard["A"]["Front"]
-  Player[Playerid]["Score"] = Player[Playerid]["Score"]+GetCard["A"]["Score"]
+function playerGetCard(GetCard,id,Playerid)
+  table.insert(Player[Playerid]["Card"], GetCard[id])
+  Score = Card[GetCard[id]]["Score"]
+  Player[Playerid]["Score"] = Player[Playerid]["Score"] + Score
 end
 
 function love.draw()
+  --Background
   love.graphics.draw(background, 0, 0, 0, 1, 1)
-  
+  love.graphics.draw(back, 370, 285, 0, 0.2, 0.2)
+    
   --Draw Counter
-  if Pick ~= nill then
-    for i=1, 5 do
+  if Pick ~= nill 
+  then
+    for i=1, table.getn(Pick) do
       picked = love.graphics.newImage(Card[Pick[i]]["Front"])
       love.graphics.draw(picked, 470+80*i, 305, 0, 0.15, 0.15)
     end
@@ -116,10 +120,11 @@ function love.draw()
   
   --Draw Player
   for i=1, 4 do
-    if Player[i] ~= nill then
+    if Player[i] ~= nill 
+    then
       for j=1, table.getn(Player[i]["Card"])do
         hand = love.graphics.newImage(Card[Player[i]["Card"][j]]["Front"])
-        love.graphics.draw(hand, 200, 200)
+        love.graphics.draw(hand, 470+80*j, 585, 0, 0.15, 0.15)
       end
     end
   end
@@ -131,21 +136,43 @@ function love.draw()
   love.graphics.print('score: ' .. Player[3]["Score"], 770, 140)
   love.graphics.print('score: ' .. Player[4]["Score"], 1195, 165)
   love.graphics.setColor(255,255,255)
-  
 end
 
 function love.load()
-  -- System
+  --System
   width = love.graphics.getWidth()
   height = love.graphics.getHeight()
   
-  -- Background
+  --Background
   background = love.graphics.newImage('img/background.jpg')
+  
+  --Deck
+  back = love.graphics.newImage('img/back.png')
 end
 
 function love.update()
 end
 
 function love.mousepressed(x, y, button)
-  deal_deck()
+  if button == 1 
+    and x > 370 and x < 470
+    and y > 285 and y < 435
+    and Pick == nill
+  then
+    deal_deck()
+  end
+  
+  if Pick ~= nill 
+  then
+    for i = 1, table.getn(Pick) do
+      X = 470+80*i
+      if button == 1
+        and y > 305 and y < 417
+        and x > X and x < X + 75
+      then
+        playerGetCard(Pick,i,1)
+        table.remove(Pick, i)
+      end
+    end
+  end
 end
