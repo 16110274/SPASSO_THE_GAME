@@ -18,19 +18,19 @@ local player_turn = 1
 Card = {}
 Card["A"] = {}
 Card["A"]["Score"] = 1
-Card["A"]["Front"] = 'img/back.png'
+Card["A"]["Front"] = 'img/a.png'
 Card["B"] = {}
 Card["B"]["Score"] = 1
-Card["B"]["Front"] = 'img/back.png'
+Card["B"]["Front"] = 'img/b.png'
 Card["C"] = {}
 Card["C"]["Score"] = 1
-Card["C"]["Front"] = 'img/back.png'
+Card["C"]["Front"] = 'img/c.png'
 Card["D"] = {}
 Card["D"]["Score"] = 1
-Card["D"]["Front"] = 'img/back.png'
+Card["D"]["Front"] = 'img/d.png'
 Card["E"] = {}
 Card["E"]["Score"] = 1
-Card["E"]["Front"] = 'img/back.png'
+Card["E"]["Front"] = 'img/e.png'
 Card["F"] = {}
 Card["F"]["Score"] = 2
 Card["F"]["Front"] = 'img/back.png'
@@ -42,10 +42,10 @@ Card["H"]["Score"] = 2
 Card["H"]["Front"] = 'img/back.png'
 Card["I"] = {}
 Card["I"]["Score"] = 3
-Card["I"]["Front"] = 'img/back.png'
+Card["I"]["Front"] = 'img/i.png'
 Card["J"] = {}
 Card["J"]["Score"] = 3
-Card["J"]["Front"] = 'img/back.png'
+Card["J"]["Front"] = 'img/j.png'
 
 --Deck initiation
 Deck = {}
@@ -116,7 +116,7 @@ function love.draw()
   then
     for i=1, table.getn(Pick) do
       picked = love.graphics.newImage(Card[Pick[i]]["Front"])
-      love.graphics.draw(picked, 470+80*i, 305, 0, 0.15, 0.15)
+      love.graphics.draw(picked, 470+80*i, 305, 0, 1, 1)
     end
   end
   
