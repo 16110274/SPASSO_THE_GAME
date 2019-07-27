@@ -33,13 +33,13 @@ Card["E"]["Score"] = 1
 Card["E"]["Front"] = 'img/e.png'
 Card["F"] = {}
 Card["F"]["Score"] = 2
-Card["F"]["Front"] = 'img/back.png'
+Card["F"]["Front"] = 'img/f.png'
 Card["G"] = {}
 Card["G"]["Score"] = 2
-Card["G"]["Front"] = 'img/back.png'
+Card["G"]["Front"] = 'img/g.png'
 Card["H"] = {}
 Card["H"]["Score"] = 2
-Card["H"]["Front"] = 'img/back.png'
+Card["H"]["Front"] = 'img/h.png'
 Card["I"] = {}
 Card["I"]["Score"] = 3
 Card["I"]["Front"] = 'img/i.png'
@@ -128,16 +128,16 @@ function love.draw()
         hand = love.graphics.newImage(Card[Player[i]["Card"][j]]["Front"])
         if i == 1
         then
-          love.graphics.draw(hand, 535+15*j, 585, 0, 0.15, 0.15)
+          love.graphics.draw(hand, 535+15*j, 585, 0, 1, 1)
         elseif i == 2
         then
-          love.graphics.draw(hand, 175, 415-15*j, math.pi/2, 0.15, 0.15)
+          love.graphics.draw(hand, 175, 415-15*j, math.pi/2, 1, 1)
         elseif i == 3
         then
-          love.graphics.draw(hand, 775-15*j, 145, math.pi, 0.15, 0.15)
+          love.graphics.draw(hand, 775-15*j, 145, math.pi,1, 1)
         elseif i == 4
         then
-          love.graphics.draw(hand, 1160, 295+15*j, -math.pi/2, 0.15, 0.15)
+          love.graphics.draw(hand, 1160, 295+15*j, -math.pi/2, 1, 1)
         end
       end
     end
