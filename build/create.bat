@@ -1,0 +1,1 @@
+copy /b love.exe+src.love Spasso-The-Game.exe
