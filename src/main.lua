@@ -13,7 +13,8 @@ require 'fyshuffle'
 
 local background
 local currentScreen
-local player_turn = 1
+local player_turn = 0
+local win
 
 function love.load()
   --System
@@ -75,6 +76,8 @@ function love.load()
   --Player
   Player ={}
 
+  --1st Marker
+  mark = love.graphics.newImage('img/1st.png')
 end
 
 function love.update(dt)
@@ -104,8 +107,8 @@ end
 function menuUpdate(dt)
   local x, y = love.mouse.getX(), love.mouse.getY()
   if love.mouse.isDown(1)
-  and x > 618 and x < 1366
-  and y > 407 and y < 768
+  and x > 615 and x < 755
+  and y > 470 and y < 500
   then
     currentScreen = 'game'
     init_game()
@@ -122,8 +125,8 @@ end
 function resultUpdate(dt)
   local x, y = love.mouse.getX(), love.mouse.getY()
   if love.mouse.isDown(1)
-  and x > 500 and x < 1366
-  and y > 500 and y < 768
+  and x > 535 and x < 765
+  and y > 545 and y < 585
   then
     currentScreen = 'menu'
   end
@@ -176,7 +179,7 @@ function gameDraw()
     end
   end
   
-  --Score Player
+  --Player
   love.graphics.setColor(0,0,0)
   love.graphics.setNewFont(12)
   love.graphics.print('score: ' .. Player[1]["Score"], 500, 575)
@@ -192,9 +195,42 @@ function gameDraw()
     love.graphics.print('CLICK DECK TO DRAW', 550, 350)
   end
   love.graphics.setColor(255,255,255)
+  if player_turn == 1
+  then
+    love.graphics.draw(mark, 500, 625)
+  elseif player_turn == 2
+  then
+    love.graphics.draw(mark, 100, 475)
+  elseif player_turn == 3
+  then
+    love.graphics.draw(mark, 770, 60)
+  elseif player_turn == 4
+  then
+    love.graphics.draw(mark, 1195, 185)
+  end
 end
 
 function resultDraw()
+  max = math.max(Player[1]["Score"],Player[2]["Score"],Player[3]["Score"],Player[4]["Score"])
+  for i = 1, 4 do
+    if max == Player[i]["Score"]
+    then
+      win = i
+    end
+  end
+  
+  love.graphics.setColor(0,0,0)
+  love.graphics.setNewFont(32)
+  love.graphics.print('Result', 600, 100)
+  love.graphics.setNewFont(24)
+  love.graphics.print('Player 1 score: ' .. Player[1]["Score"], 500, 200)
+  love.graphics.print('Player 2 score: ' .. Player[2]["Score"], 500, 250)
+  love.graphics.print('Player 3 score: ' .. Player[3]["Score"], 500, 300)
+  love.graphics.print('Player 4 score: ' .. Player[4]["Score"], 500, 350)
+  love.graphics.setNewFont(32)
+  love.graphics.print('Winner is Player ' .. win, 510, 450)
+  love.graphics.print('Back to Menu', 540, 550)
+  love.graphics.setColor(255,255,255)
 end
 
 function love.mousepressed(x, y, button)
@@ -216,7 +252,6 @@ function love.mousepressed(x, y, button)
       then
         playerGetCard(Pick,i,1)
         table.remove(Pick, i)
-        player_turn = 2
         
         --enemy move
         for j = 2,4 do
@@ -226,13 +261,6 @@ function love.mousepressed(x, y, button)
           end
           playerGetCard(Pick,math.random(table.getn(Pick)),j)
           table.remove(Pick, table.getn(Pick))
-          
-          if player_turn == 4
-          then
-            player_turn = 1
-          else
-            player_turn = player_turn + 1
-          end
         end
       end
     end
@@ -288,6 +316,12 @@ function deal_deck()
   for i=1, 5 do
     Pick[i] = Deck[table.getn(Deck)]
     table.remove(Deck)
+  end
+  if player_turn == 4
+  then
+    player_turn = 1
+  else
+    player_turn = player_turn + 1
   end
 end
 
