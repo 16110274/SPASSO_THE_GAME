@@ -182,10 +182,10 @@ function gameDraw()
   --Player
   love.graphics.setColor(0,0,0)
   love.graphics.setNewFont(12)
-  love.graphics.print('score: ' .. Player[1]["Score"], 500, 575)
-  love.graphics.print('score: ' .. Player[2]["Score"], 100, 525)
-  love.graphics.print('score: ' .. Player[3]["Score"], 770, 140)
-  love.graphics.print('score: ' .. Player[4]["Score"], 1195, 165)
+  love.graphics.print('Player 1 score: ' .. Player[1]["Score"], 500, 570)
+  love.graphics.print('Player 2 score: ' .. Player[2]["Score"], 100, 525)
+  love.graphics.print('Player 3 score: ' .. Player[3]["Score"], 770, 140)
+  love.graphics.print('Player 4 score: ' .. Player[4]["Score"], 1195, 165)
   love.graphics.print('card left: ' .. table.getn(Deck), 380, 445)
   
   --Draw Info
